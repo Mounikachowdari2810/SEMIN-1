@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #eaf2f8;
+            text-align: center;
+        }
+
+        .box {
+            background: white;
+            width: 350px;
+            margin: 40px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 7px;
+            width: 85%;
+        }
+
+        button {
+            background: #2874a6;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #library {
+            display: none;
+        }
+
+        li {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Page -->
+    <div class="box" id="login">
+        <h2>Library Login</h2>
+
+        <input type="text" id="username"
+               placeholder="Username">
+
+        <input type="password" id="password"
+               placeholder="Password">
+
+        <button onclick="loginUser()">Login</button>
+    </div>
+
+    <!-- Library Home Page -->
+    <div class="box" id="library">
+        <h2>Welcome to Library</h2>
+
+        <h3>Available Books</h3>
+        <ul id="bookList">
+            <li>Java Programming</li>
+            <li>Python Programming</li>
+            <li>Web Development</li>
+            <li>Database Management</li>
+        </ul>
+
+        <h3>Issue a Book</h3>
+        <input type="text" id="bookName"
+               placeholder="Enter book name">
+
+        <button onclick="issueBook()">Issue Book</button>
+        <button onclick="returnBook()">Return Book</button>
+
+        <p id="message"></p>
+
+        <button onclick="logoutUser()">Logout</button>
+    </div>
+
+    <script>
+        function loginUser() {
+            let user = document.getElementById("username").value;
+            let pass = document.getElementById("password").value;
+
+            if (user === "admin" && pass === "1234") {
+                document.getElementById("login").style.display = "none";
+                document.getElementById("library").style.display = "block";
+            } else {
+                alert("Invalid Username or Password");
+            }
+        }
+
+        function issueBook() {
+            let book = document.getElementById("bookName").value;
+
+            if (book === "") {
+                alert("Please enter a book name");
+            } else {
+                document.getElementById("message").innerHTML =
+                    book + " issued successfully!";
+            }
+        }
+
+        function returnBook() {
+            let book = document.getElementById("bookName").value;
+
+            if (book === "") {
+                alert("Please enter a book name");
+            } else {
+                document.getElementById("message").innerHTML =
+                    book + " returned successfully!";
+            }
+        }
+
+        function logoutUser() {
+            document.getElementById("library").style.display = "none";
+            document.getElementById("login").style.display = "block";
+
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("bookName").value = "";
+            document.getElementById("message").innerHTML = "";
+        }
+    </script>
+
+</body>
+</html>
